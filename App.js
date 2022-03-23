@@ -4,6 +4,8 @@ import * as Font from 'expo-font';
 import { Text, Image } from "react-native"
 import { Ionicons } from "@expo/vector-icons";
 import { Asset, useAssets } from 'expo-asset';
+import { NavigationContainer } from "@react-navigation/native";
+import Tabs from "./navigation/Tabs";
 
 export default function App() {
   //앱로딩에서 preload만 하는것이라면 hook을 사용하면 3줄이면끝남
@@ -13,5 +15,9 @@ export default function App() {
   if (!assets || !loaded) {
     return <AppLoading />;
   }
-  return <Text>we are done loading!!!</Text>;
+  return (
+    <NavigationContainer>
+      <Tabs />
+    </NavigationContainer>
+  );
 }

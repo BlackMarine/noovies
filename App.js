@@ -16,6 +16,7 @@ export default function App() {
     return <AppLoading />;
   }
   return (
+    //네비게이션컨테이너가 필요함 그냥 룰임
     <NavigationContainer>
       <Tabs />
     </NavigationContainer>

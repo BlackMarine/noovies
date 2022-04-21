@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Moives from "../screens/Movies";
 import Tv from "../screens/Tv";
 import Search from "../screens/Search";
+import { Ionicons } from "@expo/vector-icons";
 import { View, Text } from "react-native";
 import { useColorScheme } from 'react-native';
 import { BLACK_COLOR, DARK_GREY, LIGHT_GREY, YELLOW_COLOR } from "../colors";
@@ -16,11 +17,16 @@ function Tabs() {
       initialRouteName="Tv"
       screenOptions={{
         //i pad 에선 비사이드 많이씀
-        tabBarLabelPosition: "beside-icon",
+        // tabBarLabelPosition: "beside-icon",
         tabBarActiveTintColor: "blue",
         tabBarInactiveTintColor: "gray",
         tabBarStyle: {
           backgroundColor: isDark ? "black" : YELLOW_COLOR,
+        },
+        tabBarLabelStyle: {
+          marginTop: -8,
+          fontSize: 14,
+          fontWeight: "600",
         },
       }}
     >
@@ -33,10 +39,13 @@ function Tabs() {
               <Text>HelloMovie</Text>
             </View>
           ),
+          tabBarIcon: ({focused, color, size}) => {
+            return <Ionicons name={focused ? "film" : "film-outline"} color={color} size={size}/>
+          },
         }}
       />
       <Tab.Screen
-        name="Tv"
+        name="TV"
         component={Tv}
         options={{
           //5개 알림이 있어요~ Badge
@@ -48,9 +57,20 @@ function Tabs() {
               <Text>HelloTV</Text>
             </View>
           ),
+          tabBarIcon: ({focused, color, size}) => {
+            return <Ionicons name="tv-outline" color={color} size={size}/>
+          },
         }}
       />
-      <Tab.Screen name="Search!@!@" component={Search} />
+      <Tab.Screen 
+        name="Search!@!@" 
+        component={Search}
+        options={{
+          tabBarIcon: ({focused, color, size}) => {
+            return <Ionicons name={focused ? "search" : "search-outline"} color={color} size={size}/>
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 }

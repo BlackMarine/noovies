@@ -4,10 +4,12 @@ import Moives from "../screens/Movies";
 import Tv from "../screens/Tv";
 import Search from "../screens/Search";
 import { View, Text } from "react-native";
-
+import { useColorScheme } from 'react-native';
+import { BLACK_COLOR, DARK_GREY, LIGHT_GREY, YELLOW_COLOR } from "../colors";
 const Tab = createBottomTabNavigator();
 
 function Tabs() {
+  const isDark = useColorScheme() === "dark";
   return (
     <Tab.Navigator
       //첫탭위치 init
@@ -17,6 +19,9 @@ function Tabs() {
         tabBarLabelPosition: "beside-icon",
         tabBarActiveTintColor: "blue",
         tabBarInactiveTintColor: "gray",
+        tabBarStyle: {
+          backgroundColor: isDark ? "black" : YELLOW_COLOR,
+        },
       }}
     >
       <Tab.Screen 
